@@ -1,0 +1,55 @@
+# Our Last Hope (WIP)
+>**Warning:** this game is still under work.
+Supports for Linux and MacOS will be included afterwards.
+
+**Our Last Hope** is a interactive text game made in **C** based in a post-apocalyptic world.
+
+## To do:
+
+- Window resizing.
+
+## Authors
+
+**Made by:**
+- PACE--BOULNOIS Lysandre
+- MELOCCO David
+
+## Installation
+Open the .zip folder, extract it, and compile it with the following command line:
+
+```gcc game.c lib/screen.c lib/saves_screen.c lib/reading.c lib/opening_scene.c lib/name_screen.c lib/lang_screen.c lib/boot_screen.c lib/campfire_scene.c lib/player.c -o game.exe```
+
+>It will compile all the necessary libraries (for now) to make the game works!
+
+Then, go to the main folder and click on ```game.exe``` to play the game (Windows only for now).
+
+Or, use the following command line : ```./game.exe```.
+
+## Controls
+- e : Interact 👉
+- m : Map 🗺️
+- i : Inventory 🎒
+- s : Save 💾
+
+>Theses settings are likely to be changed in further versions.
+
+## Challenges
+
+This is the list of the challenges that are
+
+***currently featured:***
+- Add a possibility to save the progress in a file.
+
+> Three save slots are available: each one is saved in the ```saves``` folder. For now, only the name is saved.
+
+***partially featured:***
+- Manage simple typing errors (uppercase instead of lowercase).
+
+***likely to be featured:***
+- Add a percentage of progression.
+- Random in-game events (traps, attacks, sicknesses, weather conditions...)
+- Add in-game events based on the player current game time.
+- Add an inventory management system in which you can retrieve items and use them.
+- Add a virtual economy that allows you to buy or sell items based on their rarity.
+- Add non-player characters with more advanced behaviors, able to react to the player’s actions.
+- Manage a method of automatic generation of the map in a random way.

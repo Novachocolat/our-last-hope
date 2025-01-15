@@ -10,15 +10,16 @@
 #include "functions.h"
 
 // Plays a specific scene of the opening cutscene:
-void playFrame(const char *filePath, int startLine, int endLine, void (*nextFrame)()) {
+void playFrame(const char *filePath, int startLine, int endLine, void (*nextFrame)(), const char *image) {
     int skip;
 
     clearScreen();
 
     // Reads the dialogue
+    readLines(image);
     readBetween(filePath, startLine, endLine);
 
-    new_line(4);
+    new_line(2);
 
     if(languageChosen == 0) {
         readUniqueLine("assets/lang_en/en_strings.txt", 12);
@@ -34,31 +35,28 @@ void playFrame(const char *filePath, int startLine, int endLine, void (*nextFram
 
 // Frame 3:
 void frame3() {
-    readLines("assets/img/bag.txt");
     if(languageChosen == 0) {
-        playFrame("assets/lang_en/en_opening.txt", 10, 14, initCampFireArea);
+        playFrame("assets/lang_en/en_opening.txt", 7, 9, initCampFireArea, "img/bag.txt");
     }else{
-        playFrame("assets/lang_fr/fr_opening.txt", 10, 14, initCampFireArea);
+        playFrame("assets/lang_fr/fr_opening.txt", 7, 9, initCampFireArea, "img/bag.txt");
     }
 }
 
 // Frame 2:
 void frame2() {
-    readLines("assets/img/radio_emitter.txt");
     if(languageChosen == 0) {
-        playFrame("assets/lang_en/en_opening.txt", 5, 9, frame3);
+        playFrame("assets/lang_en/en_opening.txt", 4, 6, frame3, "img/radio_emitter.txt");
     }else{
-        playFrame("assets/lang_fr/fr_opening.txt", 5, 9, frame3);
+        playFrame("assets/lang_fr/fr_opening.txt", 4, 6, frame3, "img/radio_emitter.txt");
     }
 }
 
 // Frame 1:
 void frame1() {
-    readLines("assets/img/city.txt");
     if(languageChosen == 0) {
-        playFrame("assets/lang_en/en_opening.txt", 1, 4, frame2);
+        playFrame("assets/lang_en/en_opening.txt", 1, 3, frame2, "img/bunker.txt");
     }else{
-        playFrame("assets/lang_fr/fr_opening.txt", 1, 4, frame2);
+        playFrame("assets/lang_fr/fr_opening.txt", 1, 3, frame2, "img/bunker.txt");
     }
 }
 

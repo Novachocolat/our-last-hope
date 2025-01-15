@@ -48,4 +48,6 @@ void initNamingScreen() {
             createNewFile("saves/save_info3");
             break;
     }
+
+    gameLoop(4);
 }

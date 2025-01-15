@@ -30,4 +30,6 @@ void initLanguagesScreen() {
 
         languageChosen = chosenLanguage();
     }while(languageChosen != 0 && languageChosen != 1);
+
+    gameLoop(1);
 }

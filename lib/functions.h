@@ -5,7 +5,11 @@
 #ifndef FUNCTIONS_H
 #define FUNCTIONS_H
 
+#include <time.h>
+
 // External values:
+
+    extern int currentScreen;
     // Retrieves chosen language (0 being English (default), 1 being French):
     extern int languageChosen;
 
@@ -23,6 +27,8 @@
 
     // Retrieves player's last screen played:
     extern int lastScreen;
+
+void gameLoop();
 
 // Mains functions:
     // scr_languages.c

@@ -4,6 +4,7 @@
         "boot_screen": "cpp",
         "stdlib.h": "c",
         "functions.h": "c",
-        "windows.h": "c"
+        "windows.h": "c",
+        "time.h": "c"
     }
 }

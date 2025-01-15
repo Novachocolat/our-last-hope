@@ -25,4 +25,6 @@ void initTitleScreen() {
 
         scanf("%d", &option);
     }while(option != 1);
+
+    gameLoop(2);
 }

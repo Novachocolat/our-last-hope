@@ -67,4 +67,6 @@ void initOpeningCutscene() {
     playerHealth = 3; // Sets player's hearts to max (3).
 
     frame1();
+
+    gameLoop(5);
 }

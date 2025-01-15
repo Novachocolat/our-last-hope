@@ -91,9 +91,9 @@ void hudElements(int lastScene) {
         case 2:
         // Map:
             if(languageChosen == 0) {
-                readBetween("assets/lang_en/en_hud.txt", 9, 10);
+                readUniqueLine("assets/lang_en/en_hud.txt", 9);
             }else{
-                readBetween("assets/lang_fr/fr_hud.txt", 9, 10);
+                readUniqueLine("assets/lang_fr/fr_hud.txt", 9);
             }
             break;
 

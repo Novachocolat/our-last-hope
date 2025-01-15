@@ -15,15 +15,30 @@ Supports for Linux and MacOS will be included afterwards.
 - MELOCCO David
 
 ## Installation
+
+Go to the main folder and click on ```game.exe``` to launch the game (Windows only for now).
+
+### Compiling
+
 Open the .zip folder, extract it, and compile it with the following command line:
 
 ```gcc game.c lib/screen.c lib/saves_screen.c lib/reading.c lib/opening_scene.c lib/name_screen.c lib/lang_screen.c lib/boot_screen.c lib/campfire_scene.c lib/player.c -o game.exe```
 
->It will compile all the necessary libraries (for now) to make the game works!
+>It will compile all the necessary libraries (for now) to launch it properly.
 
-Then, go to the main folder and click on ```game.exe``` to play the game (Windows only for now).
+Then, use the following command line : ```./game.exe``` to launch the game.
 
-Or, use the following command line : ```./game.exe```.
+
+### Prerequisites
+
+To play the game correctly, please configure your command prompt to read UTF-8 characters by following these steps:
+
+1. Go to settings (```Win + U```) 
+2. Time and language -> Language and region
+3. Administration of language settings
+4. Change regional settings
+5. Enable **Beta** to use **UTF-8** encoding.
+6. Restart your computer
 
 ## Controls
 - e : Interact 👉

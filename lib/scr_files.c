@@ -10,8 +10,6 @@
 #define PLAYER_NAME_MAX_LENGTH 10
 #define FILE_NAME_MAX_LENGTH 20
 
-int saveFileChosen;
-
 struct game_file {
     char player_name[PLAYER_NAME_MAX_LENGTH];
 };
@@ -52,11 +50,13 @@ void showSaveFile(int slot){
 void showAllSaveFiles() {
     for(int i = 1; i <= 3; i++) {
         showSaveFile(i);
-        new_line(2);
+        newLine(2);
     }
 }
 
 // Choose a save file slot:
+int saveFileChosen;
+
 int whichSaveFile() {
     int save;
 

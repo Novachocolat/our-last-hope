@@ -15,7 +15,7 @@ void initTitleScreen() {
         clearScreen();
 
         readLines("img/title.txt");
-        new_line(2);
+        newLine(2);
 
         if(languageChosen == 0) {
             readUniqueLine("assets/lang_en/en_strings.txt", 3);

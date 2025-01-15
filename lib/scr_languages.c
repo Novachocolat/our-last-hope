@@ -13,7 +13,7 @@ int languageChosen;
 int chosenLanguage() {
     int lang;
 
-    new_line(4);
+    newLine(4);
     readUniqueLine("assets/lang_en/en_strings.txt", 13);
     scanf("%d", &lang);
 

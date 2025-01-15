@@ -4,8 +4,6 @@
 // Description :
     /* Initializes the opening cutscene */
 
-//! add French translations.
-
 #include <stdio.h>
 #include "functions.h"
 
@@ -13,24 +11,26 @@
 void playFrame(const char *filePath, int startLine, int endLine, void (*nextFrame)(), const char *image) {
     int skip;
 
-    clearScreen();
+    do{
+        clearScreen();
 
-    // Reads the dialogue
-    readLines(image);
-    readBetween(filePath, startLine, endLine);
+        // Reads the dialogue
+        readLines(image);
+        readBetween(filePath, startLine, endLine);
 
-    new_line(2);
+        newLine(2);
 
-    if(languageChosen == 0) {
-        readUniqueLine("assets/lang_en/en_strings.txt", 12);
-    }else{
-        readUniqueLine("assets/lang_fr/fr_strings.txt", 12);
-    }
+        if(languageChosen == 0) {
+            readUniqueLine("assets/lang_en/en_strings.txt", 12);
+        }else{
+            readUniqueLine("assets/lang_fr/fr_strings.txt", 12);
+        }
 
-    scanf("%d", &skip);
-    if(skip == 1 && nextFrame != NULL) {
-        nextFrame();
-    }
+        scanf("%d", &skip);
+        if(skip == 1 && nextFrame != NULL) {
+            nextFrame();
+        }
+    }while(skip != 1);
 }
 
 // Frame 3:
@@ -64,7 +64,7 @@ void frame1() {
 void initOpeningCutscene() {
     clearScreen();
 
-    frame1();
-
     playerHealth = 3; // Sets player's hearts to max (3).
+
+    frame1();
 }

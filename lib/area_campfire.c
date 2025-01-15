@@ -7,24 +7,33 @@
 #include <stdio.h>
 #include "functions.h"
 
-// Creates the footer specific to that scene:
-void initHUD() {
-    if(languageChosen == 0) {
-        readBetween("assets/lang_en/en_hud.txt", 2, 3);
-    }else{
-        readBetween("assets/lang_fr/fr_hud.txt", 2, 3);
-    }
-}
-
 // Creates the campfire scene:
 void initCampFireArea() {
     clearScreen();
+
+    playerHealth = 3;
+    lastScreen = 1;
     
     readLines("img/bg_campfire.txt"); // Shows the backdrop image.
 
-    hud();
-    initHUD();
+    hudHeader(1);
+    hudElements(1);
     healthBar(playerHealth);
 
-    interactPlayer();
+    playerInteractCHAR = interactPlayerCHAR();
+
+    switch(playerInteractCHAR) {
+        case 'm':
+            initMap();
+            break;
+        case 'i':
+            initInventory();
+            break;
+        case 'e':
+            // Do something.
+            break;
+        case 's':
+            // Do something.
+            break;
+    }
 }

@@ -20,7 +20,7 @@ void clearScreen() {
 }
 
 // Creates a new line:
-void new_line(int number) {
+void newLine(int number) {
     for(int i = 0; i < number; i++) {
         printf("\n");
     }
@@ -33,20 +33,77 @@ void tab(int number) {
     }
 }
 
-// Creates the hud:
-void hud() {
-    if(languageChosen == 0) {
-        readUniqueLine("assets/lang_en/en_hud.txt", 1);
-    }else{
-        readUniqueLine("assets/lang_fr/fr_hud.txt", 1);
+// Saves the last played screen:
+int lastScreen;
+
+void lastPlayedScreen(int screen) {
+    switch(screen) {
+        // Area
+        case 1:
+            initCampFireArea();
     }
 }
 
-// Creates the health bar:
-void health_bar() {
-    if(languageChosen == 0) {
-        readUniqueLine("assets/lang_en/en_hud.txt", 4);
-    }else{
-        readUniqueLine("assets/lang_fr/fr_hud.txt", 4);
+// Creates the HUD:
+void hudHeader(int lastScreen) {
+    switch(lastScreen) {
+        case 1:
+        // Area:
+            if(languageChosen == 0) {
+                readUniqueLine("assets/lang_en/en_hud.txt", 1);
+            }else{
+                readUniqueLine("assets/lang_fr/fr_hud.txt", 1);
+            }
+            break;
+        
+        case 2:
+        // Map:
+            if(languageChosen == 0) {
+                readUniqueLine("assets/lang_en/en_hud.txt", 8);
+            }else{
+                readUniqueLine("assets/lang_fr/fr_hud.txt", 8);
+            }
+            break;
+        
+        case 3:
+        // Inventory:
+            if(languageChosen == 0) {
+                readUniqueLine("assets/lang_en/en_hud.txt", 10);
+            }else{
+                readUniqueLine("assets/lang_fr/fr_hud.txt", 10);
+            }
+            break;
+    }
+}
+
+// Creates specific elements for each HUD:
+void hudElements(int lastScene) {
+    switch(lastScene) {
+        case 1:
+        // Area:
+            if(languageChosen == 0) {
+                readBetween("assets/lang_en/en_hud.txt", 2, 3);
+            }else{
+                readBetween("assets/lang_fr/fr_hud.txt", 2, 3);
+            }
+            break;
+
+        case 2:
+        // Map:
+            if(languageChosen == 0) {
+                readBetween("assets/lang_en/en_hud.txt", 9, 10);
+            }else{
+                readBetween("assets/lang_fr/fr_hud.txt", 9, 10);
+            }
+            break;
+
+        case 3:
+        // Inventory:
+            if(languageChosen == 0) {
+                readBetween("assets/lang_en/en_hud.txt", 11, 13);
+            }else{
+                readBetween("assets/lang_fr/fr_hud.txt", 11, 13);
+            }
+            break;
     }
 }

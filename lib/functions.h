@@ -15,6 +15,15 @@
     // Retrieves player's current health:
     extern int playerHealth;
 
+    // Retrieves player's interaction (only int):
+    extern int playerInteractINT;
+
+    // Retrieves player's interaction (only character):
+    extern char playerInteractCHAR;
+
+    // Retrieves player's last screen played:
+    extern int lastScreen;
+
 // Mains functions:
     // scr_languages.c
 void initLanguagesScreen();
@@ -31,8 +40,14 @@ void initNamingScreen();
     // cutsc_opening.c
 void initOpeningCutscene();
 
-    // sc_campfire.c
+    // area_campfire.c
 void initCampFireArea();
+
+    // scr_map.c
+void initMap();
+
+    // scr_inventory.c
+void initInventory();
 
 // Specific functions:
     // reading.c
@@ -42,12 +57,15 @@ void readLines();
 
     // screen.c
 void clearScreen();
-void new_line();
+void newLine();
 void tab();
-void hud();
+void hudHeader();
+void hudElements();
+void lastPlayedScreen();
 
     // player.c
 void healthBar();
-char interactPlayer();
+int interactPlayerINT();
+char interactPlayerCHAR();
 
 #endif // FUNCTIONS_H

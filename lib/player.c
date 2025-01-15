@@ -27,11 +27,23 @@ void healthBar(int current_hearts) {
 }
 
 // Waits for player's input:
-char interactPlayer() {
+int playerInteractINT;
+char playerInteractCHAR;
+
+int interactPlayerINT() {
+    int interact;
+
+    readUniqueLine("assets/lang_en/en_strings.txt", 10);
+    scanf(" %d", (int*)&interact);
+
+    return interact;
+}
+
+char interactPlayerCHAR() {
     char interact;
 
     readUniqueLine("assets/lang_en/en_strings.txt", 10);
-    scanf("%c", &interact);
+    scanf(" %c", (char*)&interact);
 
     return interact;
 }

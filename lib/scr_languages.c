@@ -25,6 +25,8 @@ void initLanguagesScreen() {
     do{
         clearScreen();
 
+        readLines("assets/img/bag.txt");
+
         readUniqueLine("assets/lang_en/en_strings.txt", 1);
         readUniqueLine("assets/lang_en/en_strings.txt", 2);
 

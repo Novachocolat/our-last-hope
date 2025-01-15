@@ -34,6 +34,7 @@ void playFrame(const char *filePath, int startLine, int endLine, void (*nextFram
 
 // Frame 3:
 void frame3() {
+    readLines("assets/img/bag.txt");
     if(languageChosen == 0) {
         playFrame("assets/lang_en/en_opening.txt", 10, 14, initCampFireArea);
     }else{
@@ -43,6 +44,7 @@ void frame3() {
 
 // Frame 2:
 void frame2() {
+    readLines("assets/img/radio_emitter.txt");
     if(languageChosen == 0) {
         playFrame("assets/lang_en/en_opening.txt", 5, 9, frame3);
     }else{
@@ -52,6 +54,7 @@ void frame2() {
 
 // Frame 1:
 void frame1() {
+    readLines("assets/img/city.txt");
     if(languageChosen == 0) {
         playFrame("assets/lang_en/en_opening.txt", 1, 4, frame2);
     }else{

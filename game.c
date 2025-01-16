@@ -57,7 +57,7 @@ int main(int argc, char *argv[]) {
     #ifdef _WIN32
         SetConsoleTitle("Our Last Hope");
     #else
-        prinft("\033]0;Our Last Hope\007");
+        printf("\033]0;Our Last Hope\007");
     #endif
 
     setlocale(LC_ALL, "");

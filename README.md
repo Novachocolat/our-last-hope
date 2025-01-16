@@ -54,6 +54,7 @@ This is the list of the challenges that are
 
 ***currently featured:***
 - Add a possibility to save the progress in a file.
+- Add a method of automatic generation of the map in a random way.
 
 > Three save slots are available: each one is saved in the ```saves``` folder. For now, only the name is saved.
 
@@ -67,4 +68,3 @@ This is the list of the challenges that are
 - Add an inventory management system in which you can retrieve items and use them.
 - Add a virtual economy that allows you to buy or sell items based on their rarity.
 - Add non-player characters with more advanced behaviors, able to react to the player’s actions.
-- Manage a method of automatic generation of the map in a random way.

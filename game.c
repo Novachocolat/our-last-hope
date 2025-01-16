@@ -43,6 +43,20 @@ void gameLoop(int currentScreen) {
             case 5:
                 initCampFireArea();
                 break;
+            case 6:
+                initForestArea();
+                break;
+            case 7:
+                initTownArea();
+                break;
+            case 8:
+                initLakeArea();
+                break;
+            case 9:
+                initParkArea();
+                break;
+            case 10:
+                initMallArea();
             default:
                 running = 0;
                 break;

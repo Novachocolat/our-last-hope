@@ -12,7 +12,7 @@
 #define PLAYER_NAME_MAX_LENGTH 10
 #define FILE_NAME_MAX_LENGTH 20
 
-char** map[3][3];
+char** map[2][3];
 
 struct game_file {
     char player_name[PLAYER_NAME_MAX_LENGTH];

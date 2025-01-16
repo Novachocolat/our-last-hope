@@ -38,9 +38,30 @@ int lastScreen;
 
 void lastPlayedScreen(int screen) {
     switch(screen) {
-        // Area
+        // Area:
         case 1:
             initCampFireArea();
+            break;
+        // Forest:
+        case 2:
+            initForestArea();
+            break;
+        // Town:
+        case 3:
+            initTownArea();
+            break;
+        // Lake:
+        case 4:
+            initLakeArea();
+            break;
+        // Park:
+        case 5:
+            initParkArea();
+            break;
+        // Mall:
+        case 6:
+            initMallArea();
+            break;
     }
 }
 

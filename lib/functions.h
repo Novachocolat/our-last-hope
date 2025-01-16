@@ -5,8 +5,6 @@
 #ifndef FUNCTIONS_H
 #define FUNCTIONS_H
 
-#include <time.h>
-
 // External values:
 
     extern int currentScreen;
@@ -29,7 +27,7 @@
     extern int lastScreen;
 
     // Retrieves map:
-    extern char** map[3][3];
+    extern char** map[2][3];
 
 // game.c
 void gameLoop();
@@ -52,6 +50,21 @@ void initOpeningCutscene();
 
     // area_campfire.c
 void initCampFireArea();
+
+    // area_forest.c
+void initForestArea();
+
+    // area_town.c
+void initTownArea();
+
+    // area_lake.c
+void initLakeArea();
+
+    // area_park.c
+void initParkArea();
+
+    // area_mall.c
+void initMallArea();
 
     // scr_map.c
 void initMap();

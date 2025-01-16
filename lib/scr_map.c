@@ -6,22 +6,42 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <time.h>
 #include "functions.h"
 
 #define TILE_WIDTH 40
 #define TILE_HEIGHT 8
-
 #define FILE_NAME_MAX_LENGTH 20
 
-char* TILE_CITY[TILE_HEIGHT] = {
+char* TILE_TOWN[TILE_HEIGHT] = {
     "........................................",
-    ". CITY                                 .",
+    ". TOWN                                 .",
     ".       ^    #####     ^               .",
     ".            #0#0#           #####  ^  .",
     ".    #####   ##/##  ^        #0#0#     .",
     ". ^  #0#0#               ^   ##/##     .",
     ".    ##/##     ^                   ^   .",
+    "........................................"
+};
+
+char* TILE_MALL[TILE_HEIGHT] = {
+    "........................................",
+    ". MALL                                 .",
+    ".       ^    ########################  .",
+    ".   ^        ########################  .",
+    ".         ^  ##0000###000000###0000##  .",
+    ". ^          ##0000###00//00###0000##  .",
+    ".     ^                               .",
+    "........................................"
+};
+
+char* TILE_PARK[TILE_HEIGHT] = {
+    "........................................",
+    ". PARK                                 .",
+    ".        ^          ^     ^     o  ^   .",
+    ".   ^    |    o  ^  |     |   ^    |   .",
+    ".   |     ^      |            |        .",
+    ".         |   ^    ^   o   ^     ^     .",
+    ".     o       |    |       |     |     .",
     "........................................"
 };
 
@@ -47,27 +67,29 @@ char* TILE_FOREST[TILE_HEIGHT] = {
     "........................................"
 };
 
-char* TILE_BASE[TILE_HEIGHT] = {
+char* TILE_CAMP[TILE_HEIGHT] = {
     "........................................",
-    ". BASE                                 .",
+    ". CAMP                                 .",
     ".       ^   ^   #     ^        ^    ^  .",
-    ".    ^  | ^ |  #  #   |     ^  |    |  .",
-    ".  ^ |    | ^             ^ | ^   ^    .",
-    ".  |   ^    | ^        ^  |   |   |^   .",
-    ".      |      |        |           |   .",
+    ".    ^  | ^ |  # # o  |     ^  |    |  .",
+    ".  ^ |    | ^   #         ^ | ^   ^    .",
+    ".  |   ^    | ^     o  ^  |   |   |^   .",
+    ".      |      |  o     |           |   .",
     "........................................"
 };
 
-char** TILE_TYPES[] = {TILE_CITY, TILE_LAKE, TILE_FOREST};
+char** TILE_TYPES[] = {TILE_TOWN, TILE_LAKE, TILE_FOREST, TILE_MALL, TILE_PARK};
 
 // Generates a new random map:
-void generateNewMap(char** map[3][3]) {
-    for(int i = 0; i < 3; i++) {
+void generateNewMap(char** map[2][3]) {
+    for(int i = 0; i < 2; i++) {
         for(int j = 0; j < 3; j++) {
-            if(i == 1 && j == 1) {
-                map[i][j] = TILE_BASE;
+            if(i == 0 && j == 0) {
+                map[i][j] = TILE_CAMP;
+            }else if(i == 2 && j == 3) {
+                map[i][j] = TILE_MALL;
             }else{
-                int random_index = rand() % 3;
+                int random_index = rand() % 5;
                 map[i][j] = TILE_TYPES[random_index];
             }
         }
@@ -75,8 +97,8 @@ void generateNewMap(char** map[3][3]) {
 }
 
 // Shows generated map:
-void viewMap(char** map[3][3]) {
-    for(int row = 0; row < 3; row++) {
+void viewMap(char** map[2][3]) {
+    for(int row = 0; row < 2; row++) {
         for(int line = 0; line < TILE_HEIGHT; line++) {
             for(int col = 0; col < 3; col++) {
                 printf("%s", map[row][col][line]);
@@ -87,32 +109,34 @@ void viewMap(char** map[3][3]) {
 }
 
 // Saves map into save file:
-void saveMap(char** map[3][3], const char* filename) {
+void saveMap(char** map[2][3], const char* filename) {
     FILE *file = fopen(filename, "a");
 
-    for (int i = 0; i < 3; i++) {
+    for (int i = 0; i < 2; i++) {
         for (int j = 0; j < 3; j++) {
             int savedTile = -1;
-            if (map[i][j] == TILE_BASE) {
-                savedTile = 3;  // Base.
-            }else if(map[i][j] == TILE_CITY) {
-                savedTile = 0;  // City.
+            if (map[i][j] == TILE_CAMP) {
+                savedTile = 0;  // CAMP.
+            }else if(map[i][j] == TILE_TOWN) {
+                savedTile = 1;  // Town.
             }else if(map[i][j] == TILE_LAKE) {
-                savedTile = 1;  // Lake.
+                savedTile = 2;  // Lake.
             }else if(map[i][j] == TILE_FOREST) {
-                savedTile = 2;  // Forest.
+                savedTile = 3;  // Forest.
+            }else if(map[i][j] == TILE_MALL) {
+                savedTile = 4;  // Mall.
+            }else if(map[i][j] == TILE_PARK) {
+                savedTile = 5;  // Park.
             }
-
             fprintf(file, "%d ", savedTile);
         }
         fprintf(file, "\n");
     }
-
     fclose(file);
 }
 
 // Loads map:
-void loadMap(char** map[3][3], const char* filename) {
+void loadMap(char** map[2][3], const char* filename) {
     FILE *file = fopen(filename, "r");
 
     for (int i = 0; i < 3; i++) {
@@ -122,19 +146,25 @@ void loadMap(char** map[3][3], const char* filename) {
 
             switch (savedTile) {
                 case 0:
-                    map[i][j] = TILE_CITY;
+                    map[i][j] = TILE_CAMP;
                     break;
                 case 1:
-                    map[i][j] = TILE_LAKE;
+                    map[i][j] = TILE_TOWN;
                     break;
                 case 2:
-                    map[i][j] = TILE_FOREST;
+                    map[i][j] = TILE_LAKE;
                     break;
                 case 3:
-                    map[i][j] = TILE_BASE;
+                    map[i][j] = TILE_FOREST;
+                    break;
+                case 4:
+                    map[i][j] = TILE_MALL;
+                    break;
+                case 5:
+                    map[i][j] = TILE_PARK;
                     break;
                 default:
-                    map[i][j] = TILE_CITY;
+                    map[i][j] = TILE_FOREST; // If it bugs.
                     break;
             }
         }
@@ -158,5 +188,24 @@ void initMap() {
         case 'b': // Go back to last screen.
             lastPlayedScreen(lastScreen);
             break;
+        case 'f':
+            initForestArea();
+            break;
+        case 't':
+            initTownArea();
+            break;
+        case 'p':
+            initParkArea();
+            break;
+        case 'l':
+            initLakeArea();
+            break;
+        case 'm':
+            initMallArea();
+            break;
+        case 'c':
+            initCampFireArea();
+            break;
+
     }
 }

@@ -28,6 +28,7 @@
     // Retrieves player's last screen played:
     extern int lastScreen;
 
+    // Retrieves map:
     extern char** map[3][3];
 
 // game.c
@@ -78,6 +79,7 @@ void lastPlayedScreen();
 
     // player.c
 void healthBar();
+void getPlayerName();
 int interactPlayerINT();
 char interactPlayerCHAR();
 

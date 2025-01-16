@@ -113,8 +113,11 @@ void choiceSaveFile() {
                 gameLoop(3);
             }else{
                 char filename[FILE_NAME_MAX_LENGTH];
-                snprintf(filename, sizeof(filename), "saves/map_info%d", saveFileChosen);
+
+                snprintf(filename, sizeof(filename), "saves/save_info%d", saveFileChosen);
+
                 loadMap(map, filename);
+                
                 gameLoop(5);
             }
             break;

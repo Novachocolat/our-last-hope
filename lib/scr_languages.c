@@ -24,7 +24,6 @@ int chosenLanguage() {
 void initLanguagesScreen() {
     do{
         clearScreen();
-
         readUniqueLine("assets/lang_en/en_strings.txt", 1);
         readUniqueLine("assets/lang_en/en_strings.txt", 2);
 

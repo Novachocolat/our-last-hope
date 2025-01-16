@@ -7,6 +7,8 @@
 #include <stdio.h>
 #include "functions.h"
 
+#define FILE_NAME_MAX_LENGTH 20
+
 // Retrieves player's health:
 int playerHealth;
 
@@ -24,6 +26,14 @@ void healthBar(int current_hearts) {
     }else if(current_hearts == 1) {
         readUniqueLine("assets/lang_en/en_hud.txt", 7);
     }
+}
+
+// Gets player's name:
+void getPlayerName() {
+    char filename[FILE_NAME_MAX_LENGTH];
+    
+    snprintf(filename, sizeof(filename), "saves/save_info%d", saveFileChosen);
+    readUniqueLine(filename, 1);
 }
 
 // Waits for player's input:

@@ -7,6 +7,8 @@
 #include <stdio.h>
 #include "functions.h"
 
+int currentFrame;
+
 // Plays a specific scene of the opening cutscene:
 void playFrame(const char *filePath, int startLine, int endLine, void (*nextFrame)(), const char *image) {
     int skip;
@@ -17,6 +19,11 @@ void playFrame(const char *filePath, int startLine, int endLine, void (*nextFram
         // Reads the dialogue
         readLines(image);
         readBetween(filePath, startLine, endLine);
+
+        if(currentFrame == 3){
+            getPlayerName();
+            printf(".");
+        }
 
         newLine(2);
 
@@ -35,6 +42,7 @@ void playFrame(const char *filePath, int startLine, int endLine, void (*nextFram
 
 // Frame 3:
 void frame3() {
+    currentFrame = 3;
     if(languageChosen == 0) {
         playFrame("assets/lang_en/en_opening.txt", 7, 9, initCampFireArea, "img/bag.txt");
     }else{
@@ -44,6 +52,7 @@ void frame3() {
 
 // Frame 2:
 void frame2() {
+    currentFrame = 2;
     if(languageChosen == 0) {
         playFrame("assets/lang_en/en_opening.txt", 4, 6, frame3, "img/radio_emitter.txt");
     }else{
@@ -53,6 +62,7 @@ void frame2() {
 
 // Frame 1:
 void frame1() {
+    currentFrame = 1;
     if(languageChosen == 0) {
         playFrame("assets/lang_en/en_opening.txt", 1, 3, frame2, "img/bunker.txt");
     }else{

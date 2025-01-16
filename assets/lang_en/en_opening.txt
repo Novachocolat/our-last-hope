@@ -6,4 +6,4 @@ bunker’s radio emitter picks up a message: a group of scientists has built a r
 habitable planet. The rocket launches in three days.
 Before you can respond, the transmitter overheats and catches fire. Amid the chaos, you resolve to repair it. Larry,
 too scared to leave, suggests opening “Larry’s Store” near the bunker, where you can trade or sell parts for gear
-upgrades. Time is running out: only 3 days remain.
+upgrades. Time is running out: only 3 days remain 

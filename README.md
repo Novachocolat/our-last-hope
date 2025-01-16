@@ -7,6 +7,8 @@ Supports for Linux and MacOS will be included afterwards.
 ## To do:
 
 - Window resizing.
+- Windows remove() security.
+- UNIX systems compatibility.
 
 ## Authors
 

@@ -5,10 +5,14 @@
     /* Initializes the naming screen */
 
 #include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 #include "functions.h"
 
 #define PLAYER_NAME_MAX_LENGTH 10
 #define FILE_NAME_MAX_LENGTH 20
+
+char** map[3][3];
 
 struct game_file {
     char player_name[PLAYER_NAME_MAX_LENGTH];
@@ -27,7 +31,7 @@ void createNewFile(const char *file_path) {
         readUniqueLine("assets/lang_fr/fr_strings.txt", 11);
     }
 
-    scanf("%11s", &info.player_name);
+    scanf("%s", &info.player_name);
 
     fwrite(&info, sizeof(struct game_file), 1, file);
     fclose(file);
@@ -49,5 +53,12 @@ void initNamingScreen() {
             break;
     }
 
+    srand((unsigned int)(time(NULL)));
+
+    generateNewMap(map);
+    char filename[FILE_NAME_MAX_LENGTH];
+
+    snprintf(filename, sizeof(filename), "saves/map_info%d", saveFileChosen);
+    saveMap(map, filename);
     gameLoop(4);
 }

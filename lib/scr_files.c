@@ -5,6 +5,7 @@
     /* Retrieves every save files */
 
 #include <stdio.h>
+#include <stdbool.h>
 #include "functions.h"
 
 #define PLAYER_NAME_MAX_LENGTH 10
@@ -18,6 +19,7 @@ struct game_file {
 void showSaveFile(int slot){
     char filename[FILE_NAME_MAX_LENGTH];
     struct game_file info;
+    char line[100];
 
     snprintf(filename, sizeof(filename), "saves/save_info%d", slot);
     FILE *file = fopen(filename, "r");
@@ -35,7 +37,8 @@ void showSaveFile(int slot){
             fprintf(stderr, "Nouvelle partie\n");
         }
     }else{
-        while(fread(&info, sizeof(struct game_file), 1, file)) {
+        if(fgets(line, sizeof(line), file) != NULL) {
+            sscanf(line, "%s", info.player_name);
             if(languageChosen == 0) {
                 printf("Name: %s\n", info.player_name);
             }else{
@@ -46,7 +49,7 @@ void showSaveFile(int slot){
     fclose(file);
 }
 
-// Show all save files:
+// Shows all save files:
 void showAllSaveFiles() {
     for(int i = 1; i <= 3; i++) {
         showSaveFile(i);
@@ -54,7 +57,7 @@ void showAllSaveFiles() {
     }
 }
 
-// Choose a save file slot:
+// Chooses a save file slot:
 int saveFileChosen;
 
 int whichSaveFile() {
@@ -73,11 +76,24 @@ int whichSaveFile() {
     return save;
 }
 
-// Delete a save file:
+// Deletes a save file:
 void deleteSaveFile(int slot) {
     char filename[FILE_NAME_MAX_LENGTH];
     snprintf(filename, sizeof(filename), "saves/save_info%d", slot);
     remove(filename);
+}
+
+// Checks if a save file already existing:
+bool checkSaveFileExists(int slot) {
+    char filename[FILE_NAME_MAX_LENGTH];
+    snprintf(filename, sizeof(filename), "saves/save_info%d", slot);
+    FILE *file = fopen(filename, "r");
+
+    if(file != NULL) {
+        fclose(file);
+        return true;
+    }
+    return false;
 }
 
 // Handle save file interactions:
@@ -93,7 +109,14 @@ void choiceSaveFile() {
 
     switch(choice) {
         case 1:
-            initNamingScreen();
+            if(checkSaveFileExists(saveFileChosen) == false) {
+                gameLoop(3);
+            }else{
+                char filename[FILE_NAME_MAX_LENGTH];
+                snprintf(filename, sizeof(filename), "saves/map_info%d", saveFileChosen);
+                loadMap(map, filename);
+                gameLoop(5);
+            }
             break;
         case 2:
             deleteSaveFile(saveFileChosen);

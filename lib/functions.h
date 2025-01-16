@@ -28,6 +28,9 @@
     // Retrieves player's last screen played:
     extern int lastScreen;
 
+    extern char** map[3][3];
+
+// game.c
 void gameLoop();
 
 // Mains functions:
@@ -51,6 +54,10 @@ void initCampFireArea();
 
     // scr_map.c
 void initMap();
+void generateNewMap();
+void viewMap();
+void saveMap();
+void loadMap();
 
     // scr_inventory.c
 void initInventory();

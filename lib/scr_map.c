@@ -12,6 +12,8 @@
 #define TILE_WIDTH 40
 #define TILE_HEIGHT 8
 
+#define FILE_NAME_MAX_LENGTH 20
+
 char* TILE_CITY[TILE_HEIGHT] = {
     "........................................",
     ". CITY                                 .",
@@ -72,7 +74,7 @@ void generateNewMap(char** map[3][3]) {
     }
 }
 
-// View generated map:
+// Shows generated map:
 void viewMap(char** map[3][3]) {
     for(int row = 0; row < 3; row++) {
         for(int line = 0; line < TILE_HEIGHT; line++) {
@@ -84,15 +86,65 @@ void viewMap(char** map[3][3]) {
     }
 }
 
-// Show the map:
+// Saves map into save file:
+void saveMap(char** map[3][3], const char* filename) {
+    FILE *file = fopen(filename, "a");
+
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 3; j++) {
+            int savedTile = -1;
+            if (map[i][j] == TILE_BASE) {
+                savedTile = 3;  // Base.
+            }else if(map[i][j] == TILE_CITY) {
+                savedTile = 0;  // City.
+            }else if(map[i][j] == TILE_LAKE) {
+                savedTile = 1;  // Lake.
+            }else if(map[i][j] == TILE_FOREST) {
+                savedTile = 2;  // Forest.
+            }
+
+            fprintf(file, "%d ", savedTile);
+        }
+        fprintf(file, "\n");
+    }
+
+    fclose(file);
+}
+
+// Loads map:
+void loadMap(char** map[3][3], const char* filename) {
+    FILE *file = fopen(filename, "r");
+
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 3; j++) {
+            int savedTile;
+            fscanf(file, "%d", &savedTile);
+
+            switch (savedTile) {
+                case 0:
+                    map[i][j] = TILE_CITY;
+                    break;
+                case 1:
+                    map[i][j] = TILE_LAKE;
+                    break;
+                case 2:
+                    map[i][j] = TILE_FOREST;
+                    break;
+                case 3:
+                    map[i][j] = TILE_BASE;
+                    break;
+                default:
+                    map[i][j] = TILE_CITY;
+                    break;
+            }
+        }
+    }
+    fclose(file);
+}
+
+// Shows the map:
 void initMap() {
     clearScreen();
-
-    srand(time(NULL));
-
-    char** map[3][3];
-
-    generateNewMap(map);
 
     viewMap(map);
 

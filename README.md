@@ -24,7 +24,7 @@ Go to the main folder and click on ```game.exe``` to launch the game (Windows on
 
 Open the .zip folder, extract it, and compile it with the following command line:
 
-```gcc game.c lib/screen.c lib/saves_screen.c lib/reading.c lib/opening_scene.c lib/name_screen.c lib/lang_screen.c lib/boot_screen.c lib/campfire_scene.c lib/player.c -o game.exe```
+```gcc game.c lib/screen.c lib/scr_title.c lib/scr_naming.c lib/scr_languages.c lib/scr_files.c lib/area_campfire.c lib/reading.c lib/player.c lib/cutsc_opening.c lib/area_town.c lib/area_park.c lib/area_mall.c lib/area_lake.c lib/area_forest.c lib/scr_map.c lib/scr_inventory.c -o game.exe```
 
 >It will compile all the necessary libraries (for now) to launch it properly.
 

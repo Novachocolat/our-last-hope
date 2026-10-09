@@ -8,7 +8,6 @@ Supports for Linux and MacOS will be included afterwards.
 
 - Window resizing.
 - Permission denied when save deleted (Windows only).
-- loadMap() corrupts languageChosen variable.
 - Ensure player's input can not break the game.
 - Use items in inventory.
 - Change images for better lisibility.
@@ -21,18 +20,36 @@ Supports for Linux and MacOS will be included afterwards.
 
 ## Installation
 
-Go to the main folder and click on ```game.exe``` to launch the game (Windows only for now).
+Compile the game (see below), then launch ```game``` (```game.exe``` on Windows) from the main folder.
 
 ### Compiling
 
-Open the .zip folder, extract it, and compile it with the following command line:
+Open the .zip folder, extract it, and compile it with `make` (it needs `gcc` and `make`):
 
-```gcc game.c lib/screen.c lib/scr_title.c lib/scr_naming.c lib/scr_languages.c lib/scr_files.c lib/area_camp.c lib/reading.c lib/player.c lib/cutsc_opening.c lib/area_town.c lib/area_park.c lib/area_mall.c lib/area_lake.c lib/area_forest.c lib/scr_map.c lib/scr_inventory.c -o game.exe```
+```make```
 
->It will compile all the necessary libraries (for now) to launch it properly.
+Use ```make clean``` to remove the build files.
 
-Then, use the following command line : ```./game.exe``` to launch the game.
+Then, use the following command line : ```./game``` (```./game.exe``` on Windows) to launch the game from the main folder.
 
+## Project structure
+
+```
+include/        Headers (one per module)
+src/
+  main.c        Entry point
+  core/         Game loop and shared game state
+  io/           Console helpers and text file reading
+  ui/           HUD
+  player/       Player's name and inputs
+  screens/      Language, title, save files, naming, opening cutscene, map and inventory screens
+  areas/        Campfire, forest, town, lake, park and mall
+  world/        Map tiles, map generation and save files
+assets/
+  lang/en, fr/  Translated texts
+  art/          ASCII art (title, backgrounds, cutscenes)
+data/saves/     Save files (created by the game)
+```
 
 ### Prerequisites
 
@@ -62,7 +79,7 @@ This is the list of the challenges that are
 - Add a method of automatic generation of the map in a random way.
 - Add an inventory management system in which you can retrieve items and use them.
 
-> Three save slots are available: each one is saved in the ```saves``` folder. For now, only the name and the map are saved.
+> Three save slots are available: each one is saved in the ```data/saves``` folder. For now, only the name and the map are saved.
 
 ***partially featured:***
 - Manage simple typing errors (uppercase instead of lowercase).

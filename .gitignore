@@ -1,0 +1,8 @@
+# Build output
+build/
+game
+game.exe
+
+# Player save files (keep the folder)
+data/saves/*
+!data/saves/.gitkeep
